@@ -1,0 +1,24 @@
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mall-goods-service
+  main:
+    allow-bean-definition-overriding: true  #当遇到同样名字的时候，是否允许覆盖注册
+  profiles:
+    active: dev #设置启用环境  根据后缀读取nacos中相应环境的配置文件(nacos中配置文件名称为： nacos-consumer-dev  、 nacos-consumer-test、 nacos-consumer-pro )
+
+
+  #数据库
+  datasource:
+    url: jdbc:mysql://localhost:3306/wx_shopmall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+
