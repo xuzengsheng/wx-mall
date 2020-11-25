@@ -1,0 +1,30 @@
+
+k
+java:S1192G"IDefine a constant instead of duplicating this literal "parentId" 6 times.(Â×ë˜øÿÿÿÿ8Æß»ß.
+Q
+java:S3740J"/Provide the parametrized type for this generic.(ÏºÒúÿÿÿÿ8Æß»ß.
+L
+java:S3740C"/Provide the parametrized type for this generic.(† òİ8Æß»ß.
+L
+java:S3740T"/Provide the parametrized type for this generic.(ï®ë†8Æß»ß.
+Q
+java:S3740E"/Provide the parametrized type for this generic.(™Ş­Ôşÿÿÿÿ8Æß»ß.
+L
+java:S3740O"/Provide the parametrized type for this generic.(Ÿ«±8Æß»ß.
+Q
+java:S3740Y"/Provide the parametrized type for this generic.(«ïœÊşÿÿÿÿ8ù¼áß.
+Q
+java:S3740E"/Provide the parametrized type for this generic.(™Ş­Ôşÿÿÿÿ8Æß»ß.
+f
+java:S3252b"DUse static access with "com.alibaba.fastjson.JSON" for "parseArray".(ÄàÌøùÿÿÿÿ8Æß»ß.
+L
+java:S3740T"/Provide the parametrized type for this generic.(ï®ë†8Æß»ß.
+Q
+java:S3740J"/Provide the parametrized type for this generic.(ÏºÒúÿÿÿÿ8Æß»ß.
+L
+java:S3740O"/Provide the parametrized type for this generic.(Ÿ«±8Æß»ß.
+Q
+java:S3740Y"/Provide the parametrized type for this generic.(«ïœÊşÿÿÿÿ8ù¼áß.
+Z	java:S106c"9Replace this use of System.out or System.err by a logger.(®ıáëûÿÿÿÿ8Æß»ß.
+L
+java:S3740C"/Provide the parametrized type for this generic.(† òİ8Æß»ß.
