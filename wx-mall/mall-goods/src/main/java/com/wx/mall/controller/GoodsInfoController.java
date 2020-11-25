@@ -1,12 +1,16 @@
 package com.wx.mall.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wx.mall.custom.BaseResponse;
 import com.wx.mall.entity.GoodsInfo;
 import com.wx.mall.service.GoodsInfoService;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -62,5 +66,16 @@ public class GoodsInfoController {
         }
         return BaseResponse.success(goodsInfo);
     }
+
+    @GetMapping("/getGoodsByClassifyId")
+    public BaseResponse getGoodsByClassifyId(@RequestParam("classifyId") Integer classifyId) {
+        if (classifyId == null || classifyId == 0) {
+            return BaseResponse.fail("参数为空");
+        }
+        List<GoodsInfo> list = goodsInfoService.list(new QueryWrapper<GoodsInfo>().lambda().eq(GoodsInfo::getClassifyId, classifyId));
+
+        return BaseResponse.success(list);
+    }
+
 
 }

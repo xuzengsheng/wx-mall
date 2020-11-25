@@ -1,10 +1,7 @@
 package com.wx.mall;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wx.mall.entity.GoodsInfo;
 import com.wx.mall.service.GoodsInfoService;
 import org.junit.Test;
@@ -12,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.rmi.log.LogInputStream;
 
 import java.util.List;
 
@@ -31,189 +27,211 @@ public class Test1 {
     @Test
     public void test() throws JsonProcessingException {
 
-        String jsonStr = "[{\n" +
-                "\t\t\t\t\"name\": \"雅诗兰黛 Estee Lauder 专研紧塑精华素  50ml  (线雕 精华，  紧致上扬）\",\n" +
-                "\t\t\t\t\"price\": 979,\n" +
-                "\t\t\t\t\"privilegePrice\": 1089,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://m.360buyimg.com/mobilecms/s750x750_jfs/t18601/67/2327946788/116068/a8bd4a43/5aefe87aN2bab70b6.jpg!q80.dpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t16804/7/2353293106/105081/7e822f50/5aefe704Nd1fe86c2.jpg; https://img30.360buyimg.com/sku/jfs/t17932/302/2306136735/63684/efdd9c37/5aefe704N669f5693.jpg;uhttps://img30.360buyimg.com/sku/jfs/t16801/40/2334287936/129167/bd0f9306/5aefe70bN403644d6.jpg;https://img30.360buyimg.com/sku/jfs/t20077/34/311258456/108994/1f97a01a/5aefe709N555641d4.jpg;https://img30.360buyimg.com/sku/jfs/t18448/146/2268502375/81804/f27bc1d2/5aefe702N57ea8da0.jpg;https://img30.360buyimg.com/sku/jfs/t18046/195/2364128791/137799/1049ea44/5aefe70fN6f52ca27.jpg;https://img30.360buyimg.com/sku/jfs/t18277/88/2271445578/84492/dd0a2c9/5aefe70cN590137e7.jpg;https://img30.360buyimg.com/sku/jfs/t17503/341/2345340921/54264/b3169d17/5aefe70eNdc4144bb.jpg;https://img30.360buyimg.com/sku/jfs/t17593/10/2295824543/58328/db493003/5aefe70eN5b0ddea4.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 2234,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.0\",\n" +
-                "\t\t\t\t\"activityId\": 3,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"雅诗兰黛（ESTEELAUDER）红石榴鲜养焕亮女士护肤化妆品套装 正装水+洁面+日霜+眼霜+精华+粉底\",\n" +
-                "\t\t\t\t\"price\": 880,\n" +
-                "\t\t\t\t\"privilegePrice\": 934,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://img10.360buyimg.com/n7/s370x370_jfs/t20437/289/1725616899/353585/614763/5b31a0ceN7f4f913f.jpg!q70.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/popWaterMark/jfs/t19417/150/2646023481/229973/898a4533/5aff9a6aN3b763fe8.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t18664/83/2630069693/142080/60f3f444/5aff9a6aN99cf1e67.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t16975/286/2570793976/98319/655adbef/5aff9a6aNcf59ba1c.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t22348/195/159928765/208036/b6ce9180/5aff9a6aN1029e5fd.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t19261/146/2521216762/64088/4eeaa231/5aff9a6aN52c1e98f.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t16783/2/2609245928/89780/dda11e3e/5aff9a6aNba3c72e7.jpg.dpg;http://img30.360buyimg.com/popWaterMark/jfs/t17926/38/2606507283/65229/aae7adf0/5aff9a6bN1972e5cc.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t18430/180/2528308859/201934/9f651bab/5aff9a6bNd7eedae2.jpg.dpg;https://img30.360buyimg.com/popWaterMark/jfs/t18976/356/2614161303/55352/5e3d96d4/5aff9a75Nde4cc645.jpg.dpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 1921,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.4\",\n" +
-                "\t\t\t\t\"activityId\": 3,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"雅诗兰黛（Estee Lauder）鲜活亮采果萃水（滋润型）200ml（爽肤水 红石榴 补水保湿 干性肌肤）\",\n" +
-                "\t\t\t\t\"price\": 399,\n" +
-                "\t\t\t\t\"privilegePrice\": 466,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://img11.360buyimg.com/n7/s370x370_jfs/t17110/221/817454081/71160/c0a639d0/5aab69deNe0c975f7.jpg!q70.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t5926/135/9587596423/110905/f7bd526e/59940f2bNdfb56a4b.jpg;https://img30.360buyimg.com/sku/jfs/t7930/292/502689290/84445/4df3f823/59940f2bNe92dc647.jpg;https://img30.360buyimg.com/sku/jfs/t7753/364/513099891/145114/e412386d/59940f2bN6be55ce9.jpg;https://img30.360buyimg.com/sku/jfs/t5953/220/9689612416/52624/f81cf54/59940f2bNf9491510.jpg;https://img30.360buyimg.com/sku/jfs/t7786/358/515598076/95240/dcda6822/59940f2bN30d4e0d1.jpg;https://img30.360buyimg.com/sku/jfs/t7405/328/510674265/52259/b978864d/59940f2bN49ff4132.jpg;https://img30.360buyimg.com/sku/jfs/t7534/344/509271536/80864/295da304/59940f2bNd145d192.jpg;https://img30.360buyimg.com/sku/jfs/t7687/332/514833675/77271/3a8bb2b7/59940f2bNd0a645a0.jpg;https://img30.360buyimg.com/sku/jfs/t7669/8/557968565/50155/b271d718/59940f2bNda023d51.jpg;https://img30.360buyimg.com/sku/jfs/t7375/332/516598563/66730/57e872a0/59940f2fNc61ca8d3.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 1480,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"8.6\",\n" +
-                "\t\t\t\t\"activityId\": 3,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"雅诗兰黛（Estee Lauder）肌初赋活原生液200ml(护肤精华 化妆水 保湿补水收缩毛孔)\",\n" +
-                "\t\t\t\t\"price\": 789,\n" +
-                "\t\t\t\t\"privilegePrice\": 830,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://img13.360buyimg.com/n7/s370x370_jfs/t6082/110/283779492/177938/4777ed9d/59278aa7N6184a2a7.jpg!q70.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t7762/211/596627530/158129/e114b194/59950a30Nd0954785.jpg;https://img30.360buyimg.com/sku/jfs/t7087/297/2342012803/143179/dbb61f07/59950a30N0d740ad5.jpg;https://img30.360buyimg.com/sku/jfs/t7720/239/612920808/190684/9567dfdb/59950a36Nc1cf7a79.jpg;https://img30.360buyimg.com/sku/jfs/t7369/129/575950154/131595/f854d3/59950a3bN8bde8f40.jpg; https://img30.360buyimg.com/sku/jfs/t7405/194/582328689/113983/1fcf8044/59950a3cNb45812ad.jpg;https://img30.360buyimg.com/sku/jfs/t7543/227/604818492/61207/be368306/59950a3fN1e99583d.jpg;https://img30.360buyimg.com/sku/jfs/t7150/215/2311699304/134385/9d284f1d/59950a3fN965f7096.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 921,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.5\",\n" +
-                "\t\t\t\t\"activityId\": 3,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"雅诗兰黛（Estee Lauder）新肌透修护眼部密集精华15ml （眼霜 眼部精华）\",\n" +
-                "\t\t\t\t\"price\": 579,\n" +
-                "\t\t\t\t\"privilegePrice\": 612,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://img11.360buyimg.com/n2/s350x350_jfs/t9172/137/1477928132/173142/818b28aa/59ba1769N9c9b7660.jpg!q70.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t9220/313/1466732076/281478/bacc5253/59ba148eN2ed8e131.jpg;https://img30.360buyimg.com/sku/jfs/t8248/341/1478174160/295419/9f84cc2a/59ba1483N4679ccbf.jpg;https://img30.360buyimg.com/sku/jfs/t8305/284/1459181835/293444/62b3f471/59ba148eN98be0bf4.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 719,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.5\",\n" +
-                "\t\t\t\t\"activityId\": 3,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"欧莱雅 LOREAL 男士水能保湿酷爽水凝露120ml（保湿露 保湿乳 渗透补水 滋润肌肤）\",\n" +
-                "\t\t\t\t\"price\": 80,\n" +
-                "\t\t\t\t\"privilegePrice\": 96,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://m.360buyimg.com/mobilecms/s750x750_jfs/t2485/63/1124159075/138072/23f993a/567a57a8N2b78637b.jpg!q80.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t18790/311/1703785993/130517/ead29478/5ad41d19Ne24533d7.jpg;https://img30.360buyimg.com/sku/jfs/t18430/119/1674078028/243123/89b96b5f/5ad41d19Nd11f1e72.jpg;https://img30.360buyimg.com/sku/jfs/t18262/107/1621910801/273269/d67a0d81/5ad41d19N37fea36e.jpg;https://img30.360buyimg.com/sku/jfs/t18265/330/1683439864/181669/633b783b/5ad41d19N3a546bfc.jpg;https://img30.360buyimg.com/sku/jfs/t17032/281/1674652732/133031/1447ac31/5ad41d19Ne58feb49.jpg;https://img30.360buyimg.com/sku/jfs/t19780/104/1710555938/196959/cf308621/5ad41d19Nb79580da.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 1023,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"8.3\",\n" +
-                "\t\t\t\t\"activityId\": 2,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"欧莱雅(LOREAL)复颜玻尿酸化妆品护肤套装(晶露130ml+乳液110ml+晶露65ml+乳液50ml+导入霜15ml(赠品随机发))\",\n" +
-                "\t\t\t\t\"price\": 129,\n" +
-                "\t\t\t\t\"privilegePrice\": 134,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://m.360buyimg.com/mobilecms/s750x750_jfs/t19711/150/2470548977/494387/9d4aba06/5af699aaNc796b9f2.png!q80.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t19681/25/2211634922/224287/191b4eab/5aec3acbN626f89d4.jpg;https://img30.360buyimg.com/sku/jfs/t2467/315/1479078334/2361/4757d7d6/566010f4N01f5d17a.png;https://img30.360buyimg.com/sku/jfs/t16642/306/2220348263/237236/7a8104c9/5aec3af5N9813656b.jpg;https://img30.360buyimg.com/sku/jfs/t9727/247/1192461728/260447/b2a56938/59dddb16Ne97d12c9.jpg;https://img30.360buyimg.com/sku/jfs/t10876/185/1189988925/237051/caeaf09f/59dddb23N88df21ff.jpg;https://img30.360buyimg.com/sku/jfs/t14422/331/2526414129/205527/11b1b27b/5aa5f151Nf20af9d3.jpg;https://img30.360buyimg.com/sku/jfs/t2467/315/1479078334/2361/4757d7d6/566010f4N01f5d17a.png\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 543,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.6\",\n" +
-                "\t\t\t\t\"activityId\": 2,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"欧莱雅（LOREAL）三合一卸妆洁颜水深层清洁魔力水套装（倍润型400ml+95mlx3（随机发)）\",\n" +
-                "\t\t\t\t\"price\": 129,\n" +
-                "\t\t\t\t\"privilegePrice\": 134,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://m.360buyimg.com/mobilecms/s750x750_jfs/t15238/58/712902288/156770/2353e01c/5a364885N51145b5f.jpg!q80.jpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t14401/144/2085783970/231641/69229849/5a7ab846N8f9106b2.jpg;https://img30.360buyimg.com/sku/jfs/t2467/315/1479078334/2361/4757d7d6/566010f4N01f5d17a.png;https://img30.360buyimg.com/sku/jfs/t20563/281/1399665309/202489/eda62271/5b27aabaNd42e4aa1.jpg;https://img30.360buyimg.com/sku/jfs/t21274/261/1374564555/286328/3c29ac9c/5b27ab05Nc91ab167.jpg;https://img30.360buyimg.com/sku/jfs/t23767/308/172580340/208361/fef0db6/5b27aabfNa0b1602c.jpg;https://img30.360buyimg.com/sku/jfs/t7525/166/1132029644/187066/d63ee227/599aaa3eN99d283ae.jpg;https://img30.360buyimg.com/sku/jfs/t7882/103/1148017296/231718/90bd1c2d/599aaa3eNda158c72.jpg;https://img30.360buyimg.com/sku/jfs/t7636/202/1167823696/378127/73068b16/599aaa3eNefe16087.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 658,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.6\",\n" +
-                "\t\t\t\t\"activityId\": 2,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t},\n" +
-                "\t\t\t{\n" +
-                "\t\t\t\t\"name\": \"欧莱雅(LOREAL)金致臻颜化妆品护肤套装(洁面+活肤水+乳液+眼霜；赠活源液*3+日霜+眼霜旅行装)\",\n" +
-                "\t\t\t\t\"price\": 899,\n" +
-                "\t\t\t\t\"privilegePrice\": 912,\n" +
-                "\t\t\t\t\"imgUrl\": \"https://img10.360buyimg.com/evalpic/s750x750_jfs/t18412/313/1972566277/119773/84b93707/5adfe0c0N2d3afb08.jpg.dpg\",\n" +
-                "\t\t\t\t\"details\": \"https://img30.360buyimg.com/sku/jfs/t20773/174/189321095/124383/34d408e5/5b027095N114edd30.jpg;https://img30.360buyimg.com/sku/jfs/t22054/195/194589200/113441/6d7cc199/5b027096N5250a046.jpg;https://img30.360buyimg.com/sku/jfs/t21415/23/192126494/138668/126bd835/5b027095N41797db2.jpg;https://img30.360buyimg.com/sku/jfs/t18187/26/2640598371/206476/b9bd39a9/5b027096Nfb2fe414.jpg;https://img30.360buyimg.com/sku/jfs/t19744/242/2669201655/117277/503ff0db/5b027095Na8564fbc.jpg;https://img30.360buyimg.com/sku/jfs/t19675/281/2657017683/76454/6ee7c792/5b027094N2cff2eab.jpg;https://img30.360buyimg.com/sku/jfs/t21412/25/192896743/80548/558c9d21/5b027095Na7af23f1.jpg\",\n" +
-                "\t\t\t\t\"remark\": null,\n" +
-                "\t\t\t\t\"createDate\": null,\n" +
-                "\t\t\t\t\"updateDate\": null,\n" +
-                "\t\t\t\t\"clickRate\": 548,\n" +
-                "\t\t\t\t\"buyRate\": 0,\n" +
-                "\t\t\t\t\"stock\": 0,\n" +
-                "\t\t\t\t\"isHot\": \"0\",\n" +
-                "\t\t\t\t\"isNew\": \"1\",\n" +
-                "\t\t\t\t\"classifyId\": null,\n" +
-                "\t\t\t\t\"discount\": \"9.9\",\n" +
-                "\t\t\t\t\"activityId\": 2,\n" +
-                "\t\t\t\t\"shopGoodsImageList\": null,\n" +
-                "\t\t\t\t\"desc\": null\n" +
-                "\t\t\t}]";
+        String jsonStr = "[\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"韩国进口 A.by Bom艾柏梵超能婴儿冰凝叶子面膜10片\",\n" +
+                "\t\t\"price\": 129,\n" +
+                "\t\t\"privilegePrice\": 138,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t16969/88/1564110409/175802/5a26675e/5acf2422N76c30469.png!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img10.360buyimg.com/imgzone/jfs/t15079/250/1378141301/90210/c5411bbb/5a4ce51aNda84dc5a.jpg;https://img10.360buyimg.com/imgzone/jfs/t14554/230/1355421978/43906/d1b2e3d/5a4ce518N95b58aa5.jpg;https://img10.360buyimg.com/imgzone/jfs/t16174/26/1128731260/160481/c88be136/5a4ce512N58d61b46.jpg;https://img10.360buyimg.com/imgzone/jfs/t14737/209/1338124278/63666/481bb308/5a4ce520Nb26519d4.jpg;https:////img30.360buyimg.com/sku/jfs/t19075/243/1609006120/266561/710d3aa3/5ad06f17N4f7f152b.jpg;https://img10.360buyimg.com/imgzone/jfs/t15916/327/1199031650/68490/b0082cc/5a4ce521N64d24657.jpg\\n\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 162,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"9.3\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"韩国进口 A.by Bom艾柏梵超能婴儿基因再生桃花面膜5片\",\n" +
+                "\t\t\"price\": 89,\n" +
+                "\t\t\"privilegePrice\": 101,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t17983/118/1563399958/139443/efd76f63/5acf23d7Nd76e0a77.png!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img10.360buyimg.com/imgzone/jfs/t15802/158/1316273396/120942/2d01b87d/5a4efea2N8cc2fbe3.jpg;https://img10.360buyimg.com/imgzone/jfs/t14800/333/1703088600/38534/80f023c7/5a55855fNd5ef51de.jpg;https://img10.360buyimg.com/imgzone/jfs/t16276/276/1177227900/150449/af90e7d4/5a4efea2N0318e978.jpg;https://img10.360buyimg.com/imgzone/jfs/t14197/175/1423119730/94268/fc1265f1/5a4efe9bNc80c86d0.jpg;https://img10.360buyimg.com/imgzone/jfs/t14506/328/1440386772/118215/43d5e0b6/5a4efea2Ncef088fa.jpg;https://img10.360buyimg.com/imgzone/jfs/t14611/174/1709964950/130347/76ddd87d/5a558557N1873ca8e.jpg;https://img10.360buyimg.com/imgzone/jfs/t15082/240/1448420653/68120/a4cfb8f7/5a4efe8eNdd413c20.jpg;https://img10.360buyimg.com/imgzone/jfs/t14605/306/1440959264/63911/a25b2d3b/5a4efea2N2abb2c5e.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 85,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"8.8\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"品牌直采 捷俊（JAYJUN）防雾霾透白修护面膜27ml 10片/盒\",\n" +
+                "\t\t\"price\": 170,\n" +
+                "\t\t\"privilegePrice\": 189,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t8449/52/2392309676/452472/94321a74/59cca5d0Nce6b2c02.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img13.360buyimg.com/cms/jfs/t17965/171/354796120/303498/7f82de87/5a6eb0a8N578f2343.jpg;https://img13.360buyimg.com/cms/jfs/t17947/171/361108889/190428/dda759b/5a6eb0afN8ea3ec36.jpg;https://img12.360buyimg.com/cms/jfs/t16561/339/1923038925/133524/1143567d/5a6eb0b6N2b31e442.jpg;https://img20.360buyimg.com/cms/jfs/t16711/196/352610166/148325/6dde9ab7/5a6eb0cfN2c4746af.jpg;https://img30.360buyimg.com/cms/jfs/t19267/208/346999378/156410/1c807d8c/5a6eb0d2N7dbac4b3.jpg;https://img30.360buyimg.com/cms/jfs/t15454/106/2105960102/124164/d99166ef/5a6eb12eN19dcc83a.jpg;https://img11.360buyimg.com/cms/jfs/t16606/208/349833968/155296/6d8db454/5a6eb147Nf8344ead.jpg;https://img20.360buyimg.com/cms/jfs/t15748/64/2000451802/89546/7fedc0f7/5a6eb153Neee61999.jpg;https://img10.360buyimg.com/cms/jfs/t17749/303/356150240/232440/52fed16a/5a6eb169N778e8c12.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 131,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"9.0\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"品牌直采 捷俊(JAYJUN)玫瑰精华面膜25ml*10 补水保湿\",\n" +
+                "\t\t\"price\": 135,\n" +
+                "\t\t\"privilegePrice\": 168,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t3085/190/8770910845/187674/11f0949d/58c89972N2e5c175a.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img20.360buyimg.com/vc/jfs/t5140/134/330610343/294446/9e31bdf4/58fdcd46N6419e6f3.jpg;http://img20.360buyimg.com/vc/jfs/t4684/19/4035557253/114995/7d35afc3/59092f1dN6860e95d.jpg;https://img20.360buyimg.com/vc/jfs/t4438/148/4036236532/135006/14271bef/59092f1cNbffc9a5f.jpg;https://img10.360buyimg.com/cms/jfs/t11683/102/133142231/306297/f0da95c6/59e8606aNbefec256.jpg;https://img20.360buyimg.com/vc/jfs/t5131/283/899507858/141629/75e93696/59092f21N58eba3d9.jpg;https://img13.360buyimg.com/cms/jfs/t11245/200/139867059/59473/256356fc/59e8608fNdb60d364.jpg;https://img11.360buyimg.com/cms/jfs/t7873/161/2797699140/225589/d34008c6/59e855a5N6539c5a5.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 182,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"8.0\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"SNP 熊猫动物面膜贴 10片/盒 嫩白嫩肤\",\n" +
+                "\t\t\"price\": 99,\n" +
+                "\t\t\"privilegePrice\": 128,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t4636/150/2567807586/195397/84a288e3/58f08f6dN6e4d3f68.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img20.360buyimg.com/vc/jfs/t4420/82/2561615509/99651/26cf187b/58f03228N816bf65b.jpg;https://img20.360buyimg.com/vc/jfs/t4576/357/2914412627/102245/601e8bcf/58f48268N29c4b295.jpg;https://img20.360buyimg.com/vc/jfs/t4546/61/2903516973/91037/4e0ffab5/58f48268N988c19da.jpg;https://img20.360buyimg.com/vc/jfs/t4504/72/2480847299/100868/6ac17ea5/58f0322bNadf17bec.jpg;https://img20.360buyimg.com/vc/jfs/t5722/225/4553703286/98604/5c7b7ab5/5950ac14N2916289f.jpg;https://img20.360buyimg.com/vc/jfs/t4432/211/2365321936/102059/705ff735/58f0322dNb83b7327.jpg;https://img20.360buyimg.com/vc/jfs/t4654/71/2479480452/70583/4d08c08b/58f0322cNa845be74.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 127,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"7.7\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"朵玺Dr.Douxi赋活新生卵壳膜100g 紧致毛孔 锁水保湿 白色\",\n" +
+                "\t\t\"price\": 249,\n" +
+                "\t\t\"privilegePrice\": 280,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t15760/240/2364180613/156292/ef903739/5aa1f8d5Ndd42acd3.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img10.360buyimg.com/imgzone/jfs/t15274/79/2422919843/349134/17bcd260/5a9e880fNff929e75.jpg;https://img10.360buyimg.com/imgzone/jfs/t17044/228/668258528/204068/838bea39/5a9e880fNaea3579d.jpg;https://img10.360buyimg.com/imgzone/jfs/t18841/260/639063252/306396/137e665f/5a9e8810N06aedfa4.jpg;https://img10.360buyimg.com/imgzone/jfs/t19258/148/662223497/297520/28ff243a/5a9e8810Nf2f538c2.jpg;https://img10.360buyimg.com/imgzone/jfs/t19453/254/653770633/308718/77c99727/5a9e8811Nc19aac86.jpg;https://img10.360buyimg.com/imgzone/jfs/t15340/267/2439419638/355328/e0b26f3f/5a9e8811Na42a7292.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 1434,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"8.9\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"韩国进口 蒂佳婷（Dr.Jart+）水动力活力水润面膜25ml*5片/盒\",\n" +
+                "\t\t\"price\": 99.9,\n" +
+                "\t\t\"privilegePrice\": 102.5,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t5551/160/329741133/205414/3ac1307/58fdb6a5N68dde194.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img10.360buyimg.com/imgzone/jfs/t4837/126/1458842939/76890/a7ef907e/58f0a2e4Nff3c0aba.jpg;https://img10.360buyimg.com/imgzone/jfs/t4504/150/2557666272/35785/f46a13c7/58f0a2e9N308932a6.jpg;https://img10.360buyimg.com/imgzone/jfs/t4801/250/1450796110/65450/aaafe714/58f0a306Nab80de4f.jpg;https://img10.360buyimg.com/imgzone/jfs/t5284/49/1157123501/91674/aba646af/590c40ccN65851c26.jpg;https://img10.360buyimg.com/imgzone/jfs/t5449/47/1129291465/91044/d2388fc2/590bdfe7N117b6701.jpg;https://img10.360buyimg.com/imgzone/jfs/t4660/38/4268046310/44601/dc55f658/590c4089Nb198ef2b.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 103,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"9.7\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"品牌直采 韩国 捷俊(JAYJUN)水光樱花面膜三部曲25ml 10片/盒\",\n" +
+                "\t\t\"price\": 150,\n" +
+                "\t\t\"privilegePrice\": 172.5,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t3124/255/8602351009/241617/559927c2/58c899b3N8df4bd72.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img14.360buyimg.com/cms/jfs/t12343/316/887057782/88519/4f284e41/5a150e8aN196a8ddf.jpg;https://img30.360buyimg.com/cms/jfs/t17017/2/340545752/172027/27e48839/5a6e88e9Nce1160de.jpg;https://img13.360buyimg.com/cms/jfs/t14668/344/2119312842/177873/384d37a2/5a6e88f0Ned4ec6c6.jpg;https://img30.360buyimg.com/cms/jfs/t18931/364/367076441/98073/4ee13acd/5a6e88f7Ne742e30c.jpg;https://img30.360buyimg.com/cms/jfs/t18766/341/352628783/129184/442b28ec/5a6e88feN3b1d4730.jpg;https://img30.360buyimg.com/cms/jfs/t19456/339/358546634/110763/719b8d65/5a6e8906N286d8766.jpg;https://img10.360buyimg.com/cms/jfs/t15085/282/2032906665/182238/569f4f77/5a6e890eNabd2ced7.jpg;https://img13.360buyimg.com/cms/jfs/t18466/357/345693950/213982/77f33df5/5a6e8916N22aa3a4e.jpg;https://img20.360buyimg.com/cms/jfs/t19513/79/353672782/227873/3ff2ee4f/5a6e8928N04049c5a.jpg;https://img14.360buyimg.com/cms/jfs/t16141/300/1987302595/122333/2ecaa01c/5a6e8930N5d6fd252.jpg;https://img14.360buyimg.com/cms/jfs/t13543/219/2385328042/225589/d34008c6/5a6e893fNf0560a14.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 46,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"8.7\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"韩国 美迪惠尔(Mediheal) 可莱丝 N.M.F针剂水库面膜贴10片/盒 \",\n" +
+                "\t\t\"price\": 109,\n" +
+                "\t\t\"privilegePrice\": 118,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t15052/115/2139262461/423349/5957e91f/5a712387N0365d980.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img14.360buyimg.com/cms/jfs/t12343/316/887057782/88519/4f284e41/5a150e8aN196a8ddf.jpg;https://img10.360buyimg.com/imgzone/jfs/t17545/197/418825931/103385/d0e303f0/5a742eb2Nc1421032.jpg;https://img10.360buyimg.com/imgzone/jfs/t18136/283/404256508/300888/436357fe/5a742eb2N8499ed83.jpg;https://img10.360buyimg.com/imgzone/jfs/t16789/337/414130656/298203/7d33cfb7/5a742eb3Nf4153453.jpg;https://img10.360buyimg.com/imgzone/jfs/t17578/18/409122228/224890/6ab90be6/5a742eb2N894426b2.jpg;https://img10.360buyimg.com/imgzone/jfs/t16696/347/430880407/17875/f0fa9615/5a742eb2Nbca4e689.jpg;https://img14.360buyimg.com/cms/jfs/t11032/271/1584395193/57051/a878fd8/5a043166N881eb0c9.jpg;https://img20.360buyimg.com/cms/jfs/t13240/263/5509684/245444/712e644/5a018433N8469d2b1.jpg;https://img10.360buyimg.com/cms/jfs/t12544/274/7251752/305141/5f03d2f4/5a018436N11ec41e5.jpg;https://img11.360buyimg.com/cms/jfs/t14026/244/7105757/296438/9f8b0330/5a018435Nb2209323.jpg;https://img14.360buyimg.com/cms/jfs/t13528/244/7720805/205355/5cd86d41/5a018433N937a3a6f.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 36,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"9.2\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t},\n" +
+                "\t{\n" +
+                "\t\t\"name\": \"日本肌美精（Kracie）3D浸透高保湿补水面膜4片/盒（玫红）\",\n" +
+                "\t\t\"price\": 60,\n" +
+                "\t\t\"privilegePrice\": 81,\n" +
+                "\t\t\"imgUrl\": \"https://m.360buyimg.com/n12/jfs/t12682/83/568380680/582254/a6481400/5a0e8e23Nc9175fe5.jpg!q70.jpg\",\n" +
+                "\t\t\"details\": \"https://img14.360buyimg.com/cms/jfs/t12343/316/887057782/88519/4f284e41/5a150e8aN196a8ddf.jpg;https://img30.360buyimg.com/popWaterMark/jfs/t11434/316/2014606650/429795/65aa49a9/5a0e8e57N9dcafb7b.jpg;https://img30.360buyimg.com/popWaterMark/jfs/t13564/216/573238045/312020/520e1cc6/5a0e8e2eNce0011c3.jpg;https://img30.360buyimg.com/popWaterMark/jfs/t14155/191/564000039/355656/1af845be/5a0e8e57N69a2c7fa.jpg;https://img30.360buyimg.com/popWaterMark/jfs/t13738/205/551957394/367934/5a1c4046/5a0e8e54N0cf8650e.jpg;https://img30.360buyimg.com/popWaterMark/jfs/t14074/213/560401806/495535/e8d3f7dd/5a0e8e47Nd5aeb138.jpg\",\n" +
+                "\t\t\"remark\": null,\n" +
+                "\t\t\"createDate\": null,\n" +
+                "\t\t\"updateDate\": null,\n" +
+                "\t\t\"clickRate\": 1193,\n" +
+                "\t\t\"buyRate\": 0,\n" +
+                "\t\t\"stock\": 0,\n" +
+                "\t\t\"isHot\": \"0\",\n" +
+                "\t\t\"isNew\": \"1\",\n" +
+                "\t\t\"classifyId\": null,\n" +
+                "\t\t\"discount\": \"7.4\",\n" +
+                "\t\t\"activityId\": null,\n" +
+                "\t\t\"shopGoodsImageList\": null,\n" +
+                "\t\t\"desc\": null\n" +
+                "\t}\n" +
+                "]";
         List<GoodsInfo> list = JSON.parseArray(jsonStr,GoodsInfo.class);
         boolean save = goodsInfoService.saveBatch(list);
-        System.out.println(save);
+        System.out.println("》》》》插入结果："+save);
 
     }
 }

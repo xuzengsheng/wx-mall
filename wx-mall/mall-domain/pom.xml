@@ -28,6 +28,11 @@
             <version>3.3.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.wx.mall</groupId>
+            <artifactId>mall-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
